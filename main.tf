@@ -78,7 +78,7 @@ resource "azurerm_cognitive_deployment" "this" {
   name                 = each.value.name
   rai_policy_name      = each.value.rai_policy_name
   
-  timeouts = {
+  timeouts {
     create = "2h"
     update = "2h"
     delete = "2h"
