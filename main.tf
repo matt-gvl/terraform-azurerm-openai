@@ -33,11 +33,6 @@ resource "azurerm_cognitive_account" "this" {
     avm_yor_trace            = "70aab6db-7406-46de-a3fa-ee5abb95fdfd"
   } /*<box>*/ : replace(k, "avm_", var.tracing_tags_prefix) => v } : {}) /*</box>*/))
   
-  timeouts = {
-    create = "2h"
-    update = "2h"
-    delete = "2h"
-  }
   dynamic "customer_managed_key" {
     for_each = var.customer_managed_key != null ? [var.customer_managed_key] : []
     content {
@@ -82,7 +77,12 @@ resource "azurerm_cognitive_deployment" "this" {
   cognitive_account_id = azurerm_cognitive_account.this.id
   name                 = each.value.name
   rai_policy_name      = each.value.rai_policy_name
-
+  
+  timeouts = {
+    create = "2h"
+    update = "2h"
+    delete = "2h"
+  }
   model {
     format  = each.value.model_format
     name    = each.value.model_name
