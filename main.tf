@@ -34,9 +34,9 @@ resource "azurerm_cognitive_account" "this" {
   } /*<box>*/ : replace(k, "avm_", var.tracing_tags_prefix) => v } : {}) /*</box>*/))
 
   timeouts {
-    create = "2h"
-    update = "2h"
-    delete = "2h"
+    create = "3h"
+    update = "3h"
+    delete = "3h"
   }
 
   dynamic "customer_managed_key" {
